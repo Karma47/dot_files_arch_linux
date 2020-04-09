@@ -80,6 +80,8 @@ plugins=(extract)
 plugins=(sublime)
 plugins=(urltools)
 plugins=(virtualenv)
+plugins=(tmux)
+# plugins=(oh-my-shell)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -127,7 +129,6 @@ source $ZSH/oh-my-zsh.sh
 # ------------------------------------------------------------------------------
 
 VIRTUAL_ENV_DISABLE_PROMPT=true
-
 # Define order and content of prompt
 if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
   BULLETTRAIN_PROMPT_ORDER=(
@@ -792,8 +793,8 @@ prompt_line_sep() {
 build_prompt() {
   RETVAL=$?
   for segment in $BULLETTRAIN_PROMPT_ORDER
-  do
-    prompt_$segment
+  do	  
+ 	prompt_$segment
   done
   prompt_end
 }
@@ -807,4 +808,14 @@ PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
 PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
 PROMPT="$PROMPT"'$(prompt_chars)%{$reset_color%}'
+#i=$(echo $((1 + RANDOM % 20))) && exec /home/blank/.oh-my-shell/$i
 
+for j in {0} 
+	do
+		i=$(echo $((1 + RANDOM % 14)));
+		if 
+				[ -s ~/.oh-my-shell/$i ]; 
+			then
+    				source ~/.oh-my-shell/$i;
+		fi
+	done
